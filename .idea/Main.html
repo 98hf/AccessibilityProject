@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <link rel="icon" type="image/png" href="images/highlightHubfavi.png">
+    <link rel="stylesheet" href="Main.css">
+    <script defer src="Main.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+        <img class="logo" src="images/highlightHub.png" alt="HighlightHub" width="200px"></img>
+    <nav>
+        <ul class="options">
+            <li><a onclick="">Overview</a></li>
+            <li><a onclick="">NHL</a></li>
+            <li><a onclick="">NBA</a></li>
+            <li><a href="#">Other</a></li>
+        </ul>
+    </nav>
+    <button onclick="settings()">Settings</button>
+</header>
+    <div class="settings">
+        <div class = "settings-content">
+            <h1>Accesibilities</h1>
+            <span style="font-weight: 600;" onclick="saveAndClose()" class="close" title="Close Modal">&times;</span>
+            <div class="options2">
+                <label><input name="Vision" type="checkbox">Vision</label>
+                <label><input name="Hearing" type="checkbox">Hearing</label>
+                <label><input name="Physical/Motor" type="checkbox">Physical/Motor</label>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
