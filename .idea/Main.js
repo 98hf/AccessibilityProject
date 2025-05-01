@@ -22,11 +22,9 @@ recognition.onresult = function(event) {
     } else if (command.includes('white')){
         bg.style.background = 'white';
     } else if (command.includes('nhl') || command.includes('hockey')) {
-        document.querySelector('.NHL').style.display = 'block';
-        document.querySelector('.NBA').style.display = 'none';
+        showNHL();
     } else if (command.includes('nba') || command.includes('basketball')) {
-        document.querySelector('.NBA').style.display = 'block';
-        document.querySelector('.NHL').style.display = 'none';
+        showNBA();
     } else if (command.includes('font size')) {
         if(command.includes('big')){
             document.querySelector('.NBA').style.fontSize = '40pt';
@@ -35,16 +33,17 @@ recognition.onresult = function(event) {
             document.querySelector('.NBA').style.fontSize = '20pt';
             document.querySelector('.NHL').style.fontSize = '20pt';
         }
-    } else if (command.includes('Stats')) {
-        if(document.querySelector('.NBA').style.display === 'none'){
-            document.querySelector('#statsNHL').scrollIntoView({ behavior: 'smooth' });
-        } else if(document.querySelector('.NBA').style.display === 'none'){
+    } else if (command.includes('stats')) {
+        if(document.querySelector('.NBA').style.display === 'block'){
+            document.querySelector('#statsNBA').scrollIntoView({ behavior: 'smooth' });
+        } else if(document.querySelector('.NHL').style.display === 'block'){
             document.querySelector('#statsNHL').scrollIntoView({ behavior: 'smooth' });
         }
-
     }
 
-    document.querySelector('.transcript').innerHTML ='text transcripted: ' + command;
+    if(checkPM()){
+        document.querySelector('.transcript').innerHTML ='text transcripted: ' + command;
+    }
     console.log('Confidence: ' + event.results[event.resultIndex][0].confidence); //confidence level of what was recognized
 }
 
@@ -81,9 +80,18 @@ function saveAndClose() {
 function showNHL(){
     document.querySelector('.NHL').style.display = 'block';
     document.querySelector('.NBA').style.display = 'none';
+    document.querySelector('.Overview').style.display = 'none';
+
 }
 
 function showNBA(){
     document.querySelector('.NHL').style.display = 'none';
     document.querySelector('.NBA').style.display = 'block';
+    document.querySelector('.Overview').style.display = 'none';
+}
+
+function showOverview(){
+    document.querySelector('.Overview').style.display = 'block';
+    document.querySelector('.NHL').style.display = 'none';
+    document.querySelector('.NBA').style.display = 'none';
 }

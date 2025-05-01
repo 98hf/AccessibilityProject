@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    /*overflow: hidden;*/
+    overflow-x: hidden;
 }
 
 body {
@@ -175,4 +175,21 @@ td, th {
     padding: 10px;
     background: #8acdd5;
     color: black;
+}
+
+.Overview {
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif, serif;
+    color: white;
+    font-size: 20pt;
+}
+
+.Overview h2 {
+    font-weight: 400;
+    font-size: 20pt;
+    text-align: left;
+    margin-left: 100px;
+    margin-top: 20px;
 }
