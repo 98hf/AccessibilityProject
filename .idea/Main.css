@@ -1,8 +1,7 @@
-
 * {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    /*overflow: hidden;*/
 }
 
 body {
@@ -12,6 +11,7 @@ body {
     background-size: cover;
     height: 100vh;
 }
+
 :root {
     --accent-color: #124E66;
     --base-color: #ffffff;
@@ -57,12 +57,12 @@ header {
 }
 
 .options li a:hover {
-    color: #545754;
+    color: #11cedf;
 }
 
 button {
     padding: 9px 25px;
-    background-color: #545754;
+    background-color: rgb(0, 184, 200);
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -70,7 +70,7 @@ button {
 }
 
 button:hover {
-    background-color: #545754;
+    background-color: rgb(13, 150, 165);
 }
 
 .settings {
@@ -132,4 +132,47 @@ button:hover {
     height: 20px;
     width: 20px;
     box-sizing: border-box;
+}
+
+.NHL {
+    display: none;
+    text-align: center;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif, serif;
+    color: white;
+    font-size: 20pt;
+}
+
+.NBA {
+    display: none;
+    text-align: center;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif, serif;
+    color: white;
+    font-size: 20pt;
+}
+
+p {
+    font-family: 'Poppins', sans-serif, serif;
+    font-size: 25pt; color: white;
+    border: 1px black;
+    background-color: black;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+table {
+    border: 4px solid black;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 2px solid black;
+    text-align: left;
+    padding: 10px;
+    background: #8acdd5;
+    color: black;
 }
