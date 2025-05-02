@@ -12,10 +12,10 @@
 </head>
 <body>
 <header>
-    <img class="logo" src="images/highlightHub.png" alt="HighlightHub" width="200px">
+    <a onclick="showOverview()"><img class="logo" src="images/highlightHub.png" alt="HighlightHub" width="200px"></a>
     <nav>
         <ul class="options">
-            <li><a onclick="showOverview()">Overview</a></li>
+            <li><a onclick="showHome()">Home</a></li>
             <li><a onclick="showNHL()">NHL</a></li>
             <li><a onclick="showNBA()">NBA</a></li>
             <li><a href="#">Other</a></li>
@@ -34,13 +34,13 @@
         </div>
     </div>
 </section>
-<section class="Overview">
-    <h1>Overview</h1>
-    <h2>Accessible game stats and highlights.</h2>
+<section class="Home">
+    <h1>Welcome to HighlightHub</h1>
+    <h2>Accessible game stats and highlights. Watch your favourite game highlights from the NBA or the NHL, all in one website.</h2>
 </section>
 <section class="NHL">
     <h1>NHL</h1>
-    <img src="images/NHL.png" alt="NHL" width="600px">
+    <img src="images/NHL.png" alt="NHL" width="500px">
     <img src="images/hockeygreenguy.jpg" alt="hockeyDude" width="835px">
     <table id="statsNHL">
         <caption>Game stats</caption>
@@ -68,6 +68,7 @@
 </section>
 <section class="NBA">
     <h1>NBA</h1>
+    <img src="images/nba.jpg" alt="NBA" width="750px" style="border-radius: 5px;">
     <table id="statsNBA">
         <caption>Game stats</caption>
         <tr>
