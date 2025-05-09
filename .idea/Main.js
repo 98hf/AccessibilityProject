@@ -37,6 +37,12 @@ recognition.onresult = function(event) {
         } else if(document.querySelector('.NHL').style.display === 'flex'){
             document.querySelector('#statsNHL').scrollIntoView({ behavior: 'smooth' });
         }
+    } else if (command.includes('scroll')) {
+        if(command.includes('up')){
+            window.scrollBy(0,300);
+        } else if (command.includes('down')){
+            window.scrollBy(0,300);
+        }
     }
 
     if(checkPM()){
@@ -58,12 +64,25 @@ function checkPM() {
     return checkbox.checked;
 }
 
+function checkTTS() {
+    const checkbox = document.querySelector('input[name="Vision"]');
+    return checkbox.checked;
+}
+
+function speakAllText() {
+    // Get all visible text from body
+    const pageText = document.body.innerText;
+    const utterance = new SpeechSynthesisUtterance(pageText);
+    utterance.lang = 'en-US';
+    window.speechSynthesis.speak(utterance);
+}
 
 function settings() {
     document.getElementsByClassName("settings")[0].style.display = "block";
 }
 
 let recActive = false;
+let ttsActive = false;
 function saveAndClose() {
     document.getElementsByClassName("settings")[0].style.display = "none";
     if(checkPM()){
@@ -81,13 +100,21 @@ function saveAndClose() {
         }
         document.querySelector('.transcript').innerText = '';
     }
+    if(checkTTS()){
+        if(!ttsActive){
+            speakAllText();
+        }
+    } else {
+        if(ttsActive){
+            window.speechSynthesis.cancel();
+        }
+    }
 }
 
 function showNHL(){
     document.querySelector('.NHL').style.display = 'flex';
     document.querySelector('.NBA').style.display = 'none';
     document.querySelector('.Home').style.display = 'none';
-
 }
 
 function showNBA(){
@@ -101,3 +128,13 @@ function showHome(){
     document.querySelector('.NHL').style.display = 'none';
     document.querySelector('.NBA').style.display = 'none';
 }
+
+function scroll(){
+    console.log("Scrolling..."); // Check if it's called
+    window.scrollBy(0,300);
+}
+
+document.querySelector('.logo').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default behavior (e.g., link navigating)
+    scroll(); // Call the scroll function
+});
