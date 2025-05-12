@@ -194,13 +194,50 @@ td, th {
     font-family: 'Poppins', sans-serif, serif;
     color: white;
     font-size: 20pt;
+    padding-bottom: 10 px;
 }
 
 .Home h2 {
     font-weight: 400;
     font-size: 20pt;
-    text-align: left;
-    margin-left: 100px;
+    text-align: center;
     margin-top: 20px;
-    margin-right: 50%;
+    margin-left : 150px;
+    margin-right: 150px;
+    padding-bottom: 40px;
+    border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+}
+
+#scoreTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#scoreTable th, #scoreTable td {
+    padding: 10px;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.button-image {
+    width: 400px;
+    height: auto;
+}
+
+.big-button {
+    padding-top: 50 px;
+    padding: 200 px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.big-button:hover {
+    background-color: #0056b3;
 }

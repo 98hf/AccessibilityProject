@@ -18,7 +18,6 @@
             <li><a onclick="showHome()">Home</a></li>
             <li><a onclick="showNHL()">NHL</a></li>
             <li><a onclick="showNBA()">NBA</a></li>
-            <li><a href="#">Other</a></li>
         </ul>
     </nav>
     <button onclick="settings()">Settings</button>
@@ -37,11 +36,31 @@
 <section class="Home">
     <h1>Welcome to HighlightHub</h1>
     <h2>Accessible game stats and highlights. Watch your favourite game highlights from the NBA or the NHL, all in one website.</h2>
+    <div class="button-container">
+        <button class="big-button">
+            <img src="images/NHL.png" alt="NHL" class="button-image" onclick="showNHL()"/>
+        </button>
+        <button class="big-button">
+            <img src="images/nba.jpg" alt="NBA" class="button-image" onclick="showNBA()"/>
+        </button>
+    </div>
 </section>
 <section class="NHL">
     <h1>NHL</h1>
     <img src="images/NHL.png" alt="NHL" width="500px">
     <img src="images/hockeygreenguy.jpg" alt="hockeyDude" width="835px">
+    <table id="scoreTable" border="1">
+        <thead>
+        <tr>
+            <th>Home Team</th>
+            <th>Home Score</th>
+            <th>Away Team</th>
+            <th>Away Score</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
     <table id="statsNHL">
         <caption>Game stats</caption>
         <tr>

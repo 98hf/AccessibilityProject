@@ -38,10 +38,10 @@ recognition.onresult = function(event) {
             document.querySelector('#statsNHL').scrollIntoView({ behavior: 'smooth' });
         }
     } else if (command.includes('scroll')) {
-        if(command.includes('up')){
-            window.scrollBy(0,300);
-        } else if (command.includes('down')){
-            window.scrollBy(0,-300);
+        if (command.includes('down')) {
+            window.scrollBy({ top: 300, behavior: 'smooth' });
+        } else if (command.includes('up')) {
+            window.scrollBy({ top: -300, behavior: 'smooth' });
         }
     } else if(command.includes('more recent')){
         let iframe = document.getElementById("NBAgames");
@@ -138,6 +138,40 @@ function showHome(){
     document.querySelector('.NHL').style.display = 'none';
     document.querySelector('.NBA').style.display = 'none';
 }
+
+fetch("scores.json")
+    .then(res => res.json())
+    .then(data => {
+        const tableBody = document.querySelector("#scoreTable tbody");
+
+        if (!data.games || data.games.length === 0) {
+            tableBody.innerHTML = "<tr><td colspan='5'>No games found</td></tr>";
+            return;
+        }
+
+        data.games.forEach(game => {
+            const homeTeam = game.homeTeam?.name?.default || "N/A";
+            const awayTeam = game.awayTeam?.name?.default || "N/A";
+            const homeScore = game.homeTeam?.score ?? "N/A";
+            const awayScore = game.awayTeam?.score ?? "N/A";
+            const status = game.gameState || "N/A";
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+        <td>${homeTeam}</td>
+        <td>${homeScore}</td>
+        <td>${awayTeam}</td>
+        <td>${awayScore}</td>
+        <td>${status}</td>
+      `;
+            tableBody.appendChild(row);
+        });
+    })
+    .catch(err => {
+        console.error("Failed to load scores:", err);
+    });
+
+
 
 function scroll(){
     console.log("Scrolling..."); // Check if it's called
