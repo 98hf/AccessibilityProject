@@ -44,19 +44,15 @@ recognition.onresult = function(event) {
             window.scrollBy(0,-300);
         }
     } else if(command.includes('more recent')){
-        if(document.querySelector('.NBA').style.display === 'flex'){
-            let iframe = document.getElementById("NBAgames");
-        } else if(document.querySelector('.NHL').style.display === 'flex'){
-            let iframe = document.getElementById("NHLgames");
-        }
+        let iframe = document.getElementById("NBAgames");
+        let iframee = document.getElementById("NHLgames");
         iframe.contentWindow.scrollBy({ top: 300, behavior: 'smooth' });
+        iframee.contentWindow.scrollBy({ top: 300, behavior: 'smooth' });
     } else if(command.includes('less recent')){
-        if(document.querySelector('.NBA').style.display === 'flex'){
-            let iframe = document.getElementById("NBAgames");
-        } else if(document.querySelector('.NHL').style.display === 'flex'){
-            let iframe = document.getElementById("NHLgames");
-        }
+        let iframe = document.getElementById("NBAgames");
+        let iframee = document.getElementById("NHLgames");
         iframe.contentWindow.scrollBy({ top: -300, behavior: 'smooth' });
+        iframee.contentWindow.scrollBy({ top: -300, behavior: 'smooth' });
     }
 
     if(checkPM()){
