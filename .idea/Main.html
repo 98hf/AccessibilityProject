@@ -28,7 +28,6 @@
         <span style="font-weight: 600;" onclick="saveAndClose()" class="close" title="Close Modal">&times;</span>
         <div class="options2">
             <label><input name="Vision" type="checkbox">Vision</label>
-            <label><input name="Hearing" type="checkbox">Hearing</label>
             <label><input name="Physical/Motor" type="checkbox">Physical/Motor</label>
         </div>
     </div>
@@ -48,42 +47,10 @@
 <section class="NHL">
     <h1>NHL</h1>
     <img src="images/NHL.png" alt="NHL" width="500px">
-    <img src="images/hockeygreenguy.jpg" alt="hockeyDude" width="835px">
-    <table id="scoreTable" border="1">
-        <thead>
-        <tr>
-            <th>Home Team</th>
-            <th>Home Score</th>
-            <th>Away Team</th>
-            <th>Away Score</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <table id="statsNHL">
-        <caption>Game stats</caption>
-        <tr>
-            <th>Team</th>
-            <th>Wins</th>
-            <th>Losses</th>
-        </tr>
-        <tr>
-            <td>Oilers</td>
-            <td>6</td>
-            <td>2</td>
-        </tr>
-        <tr>
-            <td>Senators</td>
-            <td>3</td>
-            <td>7</td>
-        </tr>
-        <tr>
-            <td>Golden Knights</td>
-            <td>4</td>
-            <td>1</td>
-        </tr>
-    </table>
+    <div id="statsNBA">
+        <h1 style="font-weight: 500;">Recent Games</h1>
+        <iframe id="NHLgames" src="NHLGames.html" title="NHL Games" style="width: 1000px; height: 400px; border: 4px solid black; border-radius: 10px; margin-bottom: 40px;"></iframe>
+    </div>
 </section>
 <section class="NBA">
     <h1>NBA</h1>
