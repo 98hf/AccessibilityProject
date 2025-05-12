@@ -201,9 +201,7 @@ td, th {
     font-weight: 400;
     font-size: 20pt;
     text-align: center;
-    margin-top: 20px;
-    margin-left : 150px;
-    margin-right: 150px;
+    margin: 20px 150px 25px 150px;
     padding-bottom: 40px;
     border-bottom: 5px solid rgba(0, 0, 0, 0.5);
 }
@@ -222,22 +220,22 @@ td, th {
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 5rem;
 }
 
 .button-image {
-    width: 400px;
+    width: 300px;
     height: auto;
 }
 
 .big-button {
-    padding-top: 50 px;
-    padding: 200 px;
+    padding-top: 50px;
+    padding: 30px;
     border: none;
     background: none;
     cursor: pointer;
 }
 
 .big-button:hover {
-    background-color: #0056b3;
+    background-color: #056db3;
 }

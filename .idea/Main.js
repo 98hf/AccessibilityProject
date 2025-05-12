@@ -17,14 +17,10 @@ recognition.onresult = function(event) {
     var bg = document.querySelector('body');
 
     //Checks if the transcript contains any commands and executes them
-    if (command.includes('nhl')) {
+    if (command.includes('nhl') || command.includes('hockey')) {
         showNHL();
-    } else if (command.includes('nba')) {
+    } else if (command.includes('nba') || command.includes('basketball')) {
         showNBA();
-    } else if (command.includes('basketball') && command.includes('games')) {
-        showNBAGames();
-    } else if (command.includes('hockey') && command.includes('games')) {
-        showNHLGames();
     } else if (command.includes('home')) {
         showHome();
     } else if (command.includes('font size')) {
@@ -35,12 +31,8 @@ recognition.onresult = function(event) {
             document.querySelector('.NBA').style.fontSize = '20pt';
             document.querySelector('.NHL').style.fontSize = '20pt';
         }
-    } else if (command.includes('stats')) {
-        if(document.querySelector('.NBA').style.display === 'flex'){
-            document.querySelector('#statsNBA').scrollIntoView({ behavior: 'smooth' });
-        } else if(document.querySelector('.NHL').style.display === 'flex'){
-            document.querySelector('#statsNHL').scrollIntoView({ behavior: 'smooth' });
-        }
+    } else if (command.includes('stats') || command.includes('scores')) {
+        document.querySelector('#statsNBA').scrollIntoView({ behavior: 'smooth' });
     } else if (command.includes('scroll')) {
         if (command.includes('down')) {
             window.scrollBy({ top: 300, behavior: 'smooth' });
@@ -117,6 +109,7 @@ function saveAndClose() {
     if(checkTTS()){
         if(!ttsActive){
             speakAllText();
+            ttsActive = true;
         }
     } else {
         if(ttsActive){
@@ -131,24 +124,13 @@ function showNHL(){
     document.querySelector('.Home').style.display = 'none';
 }
 
-function showNHLGames(){
-    document.querySelector('.NHL').style.display = 'none';
-    document.querySelector('.NBA').style.display = 'none';
-    document.querySelector('.Home').style.display = 'none';
-    loadNHLGames();
-}
-
-function showNBAGames(){
-    document.querySelector('.NHL').style.display = 'none';
-    document.querySelector('.NBA').style.display = 'none';
-    document.querySelector('.Home').style.display = 'none';
-    loadNBAGames();
-}
-
 function showNBA(){
     document.querySelector('.NHL').style.display = 'none';
     document.querySelector('.NBA').style.display = 'flex';
     document.querySelector('.Home').style.display = 'none';
+    if(ttsActive){
+        speakAllText();
+    }
 }
 
 function showHome(){
