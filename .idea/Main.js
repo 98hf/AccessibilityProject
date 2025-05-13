@@ -148,3 +148,85 @@ document.querySelector('.logo').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default behavior (e.g., link navigating)
     scroll(); // Call the scroll function
 });
+
+const wrapper = document.querySelector(".wrapper");
+
+const teamLogos = {
+    "Atlanta Hawks": "NBA%20TEAMS/atlantaHawks.png",
+    "Boston Celtics": "NBA%20TEAMS/bostonCeltics.png",
+    "Brooklyn Nets": "NBA%20TEAMS/brooklynNets.png",
+    "Charlotte Hornets": "NBA%20TEAMS/charlotteHornets.png",
+    "Chicago Bulls": "NBA%20TEAMS/chicagoBulls.png",
+    "Cleveland Cavaliers": "NBA%20TEAMS/clevelandCavaliers.png",
+    "Dallas Mavericks": "NBA%20TEAMS/dallasMavericks.png",
+    "Denver Nuggets": "NBA%20TEAMS/denverNuggets.png",
+    "Detroit Pistons": "NBA%20TEAMS/detroitPistons.png",
+    "Golden State Warriors": "NBA%20TEAMS/goldenStateWarriors.png",
+    "Houston Rockets": "NBA%20TEAMS/houstonRockets.png",
+    "Indiana Pacers": "NBA%20TEAMS/indianaPacers.png",
+    "LA Clippers": "NBA%20TEAMS/losAngelesClippers.png",
+    "Los Angeles Lakers": "NBA%20TEAMS/losAngelesLakers.png",
+    "Memphis Grizzlies": "NBA%20TEAMS/memphisGrizzlies.png",
+    "Miami Heat": "NBA%20TEAMS/miamiHeat.png",
+    "Milwaukee Bucks": "NBA%20TEAMS/milwaukeeBucks.png",
+    "Minnesota Timberwolves": "NBA%20TEAMS/minnesotaTimberwolves.png",
+    "New Orleans Pelicans": "NBA%20TEAMS/newOrleansPelicans.png",
+    "New York Knicks": "NBA%20TEAMS/newYorkKnicks.png",
+    "Oklahoma City Thunder": "NBA%20TEAMS/oklahomaCityThunder.png",
+    "Orlando Magic": "NBA%20TEAMS/orlandoMagic.png",
+    "Philadelphia 76ers": "NBA%20TEAMS/philadelphia76ers.png",
+    "Phoenix Suns": "NBA%20TEAMS/phoenixSuns.png",
+    "Portland Trail Blazers": "NBA%20TEAMS/portlandTrailBlazers.png",
+    "Sacramento Kings": "NBA%20TEAMS/sacramentoKings.png",
+    "San Antonio Spurs": "NBA%20TEAMS/sanAntonioSpurs.png",
+    "Toronto Raptors": "NBA%20TEAMS/torontoRaptors.png",
+    "Utah Jazz": "NBA%20TEAMS/utahJazz.png",
+    "Washington Wizards": "NBA%20TEAMS/washingtonWizards.png"
+};
+
+const today = new Date();
+const endDate = today.toISOString().slice(0, 10);
+today.setDate(today.getDate() - 5);
+const startDate = today.toISOString().slice(0, 10);
+
+fetch(`https://api.balldontlie.io/v1/games?start_date=${startDate}&end_date=${endDate}`, {
+    headers: {
+        Authorization: "Bearer 1c92c860-e399-4fee-9409-d1065bab12a9"
+    }
+})
+    .then(res => res.json())
+    .then(data => {
+        wrapper.innerHTML = '';
+        data.data.forEach(game => {
+            let finish;
+            if (game.time === null) {
+                finish = 'SOON';
+            } else if(game.time === 'Final'){
+                finish = 'FINAL'
+            } else {
+                finish = 'LIVE';
+            }
+            const div = document.createElement("div");
+            div.classList.add("Game");
+            div.innerHTML = `
+            <div class="team">
+              <h2>${game.home_team.full_name}</h2>
+              <img src="${teamLogos[game.home_team.full_name] || ''}" alt="${game.home_team.full_name}" width="100" height="100">
+            </div>
+            <h1 class="scoreHome">${game.home_team_score}</h1>
+            <h3>–</h3>
+            <h1 class="scoreAway">${game.visitor_team_score}</h1>
+            <div class="team">
+              <img src="${teamLogos[game.visitor_team.full_name] || ''}" alt="${game.visitor_team.full_name}" width="100" height="100">
+              <h2>${game.visitor_team.full_name}</h2>
+            </div>
+            <h4 class="finish">${finish}</h4>
+            <h4 class="date">${game.date.slice(0, 10)}</h4>
+          `;
+            wrapper.appendChild(div);
+        });
+    })
+    .catch(err => {
+        console.error("Error fetching games:", err);
+        wrapper.innerHTML = "<p style='color: white; font-weight: normal; font-size: 24pt'>Couldn't load NBA games.</p>";
+    });
