@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NHL Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #1d1d1d;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .wrapper {
+            display: contents;
+            font-weight: bold;
+            font-size: 24pt;
+            color: white;
+        }
+
+        .Game {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: black;
+            border: 3px solid black;
+            border-radius: 18px;
+            width: 900px;
+            height: 150px;
+            padding: 3px 30px;
+            margin: 10px;
+            background: #12adbf;
+            position: relative;
+            gap: 225px;
+        }
+
+        .scoreHome, .scoreAway {
+            position: absolute;
+            top: 35%;
+            font-weight: 800;
+            font-size: 24pt;
+        }
+
+        .scoreHome { left: 43%; transform: translate(-50%, -50%); }
+        .scoreAway { left: 57%; transform: translate(-50%, -50%); }
+
+        .team {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            width: 350px;
+        }
+
+        .Game h2 {
+            text-align: center;
+            font-weight: 600;
+            font-size: 21pt;
+            max-width: 230px;
+        }
+
+        .Game h3 {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 900;
+            font-size: 27pt;
+        }
+
+        .finish {
+            font-size: 18pt;
+            font-weight: 700;
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .date {
+            font-size: 17pt;
+            font-weight: 700;
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper" id="gameWrapper">Loading NHL games...</div>
+
+<script>
+    const wrapper = document.getElementById("gameWrapper");
+
+    const teamLogos = {
+        "Anaheim Ducks": "NHL%20TEAMS/anaheimDucks.png",
+        "Arizona Coyotes": "NHL%20TEAMS/arizonaCoyotes.png",
+        "Boston Bruins": "NHL%20TEAMS/bostonBruins.png",
+        "Buffalo Sabres": "NHL%20TEAMS/buffaloSabres.png",
+        "Calgary Flames": "NHL%20TEAMS/calgaryFlames.png",
+        "Carolina Hurricanes": "NHL%20TEAMS/carolinaHurricanes.png",
+        "Chicago Blackhawks": "NHL%20TEAMS/chicagoBlackhawks.png",
+        "Colorado Avalanche": "NHL%20TEAMS/coloradoAvalanche.png",
+        "Columbus Blue Jackets": "NHL%20TEAMS/columbusBlueJackets.png",
+        "Dallas Stars": "NHL%20TEAMS/dallasStars.png",
+        "Detroit Red Wings": "NHL%20TEAMS/detroitRedWings.png",
+        "Edmonton Oilers": "NHL%20TEAMS/edmontonOilers.png",
+        "Florida Panthers": "NHL%20TEAMS/floridaPanthers.png",
+        "Los Angeles Kings": "NHL%20TEAMS/losAngelesKings.png",
+        "Minnesota Wild": "NHL%20TEAMS/minnesotaWild.png",
+        "Montreal Canadiens": "NHL%20TEAMS/montrealCanadiens.png",
+        "Nashville Predators": "NHL%20TEAMS/nashvillePredators.png",
+        "New Jersey Devils": "NHL%20TEAMS/newJerseyDevils.png",
+        "New York Islanders": "NHL%20TEAMS/newYorkIslanders.png",
+        "New York Rangers": "NHL%20TEAMS/newYorkRangers.png",
+        "Ottawa Senators": "NHL%20TEAMS/ottawaSenators.png",
+        "Philadelphia Flyers": "NHL%20TEAMS/philadelphiaFlyers.png",
+        "Pittsburgh Penguins": "NHL%20TEAMS/pittsburghPenguins.png",
+        "San Jose Sharks": "NHL%20TEAMS/sanJoseSharks.png",
+        "Seattle Kraken": "NHL%20TEAMS/seattleKraken.png",
+        "St. Louis Blues": "NHL%20TEAMS/stLouisBlues.png",
+        "Tampa Bay Lightning": "NHL%20TEAMS/tampaBayLightning.png",
+        "Toronto Maple Leafs": "NHL%20TEAMS/torontoMapleLeafs.png",
+        "Vancouver Canucks": "NHL%20TEAMS/vancouverCanucks.png",
+        "Vegas Golden Knights": "NHL%20TEAMS/vegasGoldenKnights.png",
+        "Washington Capitals": "NHL%20TEAMS/washingtonCapitals.png",
+        "Winnipeg Jets": "NHL%20TEAMS/winnipegJets.png"
+    };
+
+    const games = [
+        {
+            date: "2025-05-07",
+            home: "Toronto Maple Leafs",
+            away: "Florida Panthers",
+            homeScore: 4,
+            awayScore: 3,
+            status: "FINAL"
+        },
+        {
+            date: "2025-05-07",
+            home: "Winnipeg Jets",
+            away: "Dallas Stars",
+            homeScore: 2,
+            awayScore: 3,
+            status: "FINAL"
+        },
+        {
+            date: "2025-05-08",
+            home: "Washington Capitals",
+            away: "Carolina Hurricanes",
+            homeScore: 3,
+            awayScore: 1,
+            status: "FINAL"
+        },
+        {
+            date: "2025-05-08",
+            home: "Vegas Golden Knights",
+            away: "Edmonton Oilers",
+            homeScore: 4,
+            awayScore: 5,
+            status: "FINAL"
+        },
+        {
+            date: "2025-05-09",
+            home: "Florida Panthers",
+            away: "Toronto Maple Leafs",
+            homeScore: 5,
+            awayScore: 4,
+            status: "FINAL"
+        },
+        {
+            date: "2025-05-09",
+            home: "Winnipeg Jets",
+            away: "Dallas Stars",
+            homeScore: 4,
+            awayScore: 0,
+            status: "FINAL"
+        },
+        {
+            date: "2025-05-10",
+            home: "Carolina Hurricanes",
+            away: "Washington Capitals",
+            homeScore: 4,
+            awayScore: 0,
+            status: "FINAL"
+        },
+        {
+            date: "2025-05-10",
+            home: "Edmonton Oilers",
+            away: "Vegas Golden Knights",
+            homeScore: 3,
+            awayScore: 4,
+            status: "FINAL"
+        },
+        {
+            date: "2025-05-11",
+            home: "Dallas Stars",
+            away: "Winnipeg Jets",
+            homeScore: 5,
+            awayScore: 2,
+            status: "FINAL"
+        },
+        {
+            date: "2025-05-11",
+            home: "Florida Panthers",
+            away: "Toronto Maple Leafs",
+            homeScore: 2,
+            awayScore: 0,
+            status: "FINAL"
+        }
+    ];
+
+    wrapper.innerHTML = '';
+
+    games.forEach(game => {
+        const div = document.createElement("div");
+        div.classList.add("Game");
+        div.innerHTML = `
+                <div class="team">
+                    <h2>${game.home}</h2>
+                    <img src="${teamLogos[game.home] || ''}" alt="${game.home}" width="100" height="100">
+                </div>
+                <h1 class="scoreHome">${game.homeScore}</h1>
+                <h3>–</h3>
+                <h1 class="scoreAway">${game.awayScore}</h1>
+                <div class="team">
+                    <img src="${teamLogos[game.away] || ''}" alt="${game.away}" width="100" height="100">
+                    <h2>${game.away}</h2>
+                </div>
+                <h4 class="finish">${game.status}</h4>
+                <h4 class="date">${game.date}</h4>
+            `;
+        wrapper.appendChild(div);
+    });
+</script>
+</body>
+</html>
