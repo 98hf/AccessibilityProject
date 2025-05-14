@@ -150,7 +150,14 @@
         .then(data => {
             wrapper.innerHTML = '';
             data.data.forEach(game => {
-                const finish = game.time === null ? 'LIVE' : 'FINAL';
+                let finish;
+                if(game.time === null) {
+                    finish = "SOON"
+                } else if (game.time === "Final"){
+                    finish = "FINAL"
+                } else {
+                    finish = "LIVE"
+                }
                 const div = document.createElement("div");
                 div.classList.add("Game");
                 div.innerHTML = `

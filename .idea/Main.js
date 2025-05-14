@@ -276,19 +276,26 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             nbaWrapper.innerHTML = '';
             data.data.forEach(game => {
-                const finish = game.time === null ? 'LIVE' : 'FINAL';
+                let finish;
+                if(game.time === null) {
+                    finish = "SOON"
+                } else if (game.time === "Final"){
+                    finish = "FINAL"
+                } else {
+                    finish = "LIVE"
+                }
                 const div = document.createElement("div");
                 div.classList.add("Game");
                 div.innerHTML = `
                 <div class="team">
                     <h2>${game.home_team.full_name}</h2>
-                    <img src="${teamLogos[game.home_team.full_name] || ''}" alt="${game.home_team.full_name}" width="100" height="100">
+                    <img src="${teamLogos[game.home_team.full_name] || ''}" alt="${game.home_team.full_name}">
                 </div>
                 <h1 class="scoreHome">${game.home_team_score}</h1>
                 <h3>–</h3>
                 <h1 class="scoreAway">${game.visitor_team_score}</h1>
                 <div class="team">
-                    <img src="${teamLogos[game.visitor_team.full_name] || ''}" alt="${game.visitor_team.full_name}" width="100" height="100">
+                    <img src="${teamLogos[game.visitor_team.full_name] || ''}" alt="${game.visitor_team.full_name}">
                     <h2>${game.visitor_team.full_name}</h2>
                 </div>
                 <h4 class="finish">${finish}</h4>

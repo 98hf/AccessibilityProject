@@ -266,9 +266,16 @@ td, th {
     gap: 225px;
 }
 
+.Game img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
 .scoreHome, .scoreAway {
     position: absolute;
-    top: 35%;
+    top: 50%;
     font-weight: 800;
     font-size: 24pt;
 }
@@ -297,7 +304,7 @@ td, th {
 
 .Game h3 {
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: 900;
@@ -308,7 +315,7 @@ td, th {
     font-size: 18pt;
     font-weight: 700;
     position: absolute;
-    top: 45%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -317,7 +324,7 @@ td, th {
     font-size: 17pt;
     font-weight: 700;
     position: absolute;
-    top: 10px; /* previously: top: 0% */
+    bottom: 65%;
     left: 50%;
-    transform: translateX(-50%); /* removed vertical shift */
+    transform: translateX(-50%);
 }
