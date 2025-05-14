@@ -324,7 +324,7 @@ td, th {
     font-size: 17pt;
     font-weight: 700;
     position: absolute;
-    bottom: 65%;
+    bottom: 70%;
     left: 50%;
     transform: translateX(-50%);
 }
